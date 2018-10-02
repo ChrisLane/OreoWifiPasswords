@@ -1,11 +1,11 @@
 package com.pithsoftware.wifipasswords.extras;
 
 import android.content.Context;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.widget.RecyclerView;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
+import com.google.android.material.appbar.AppBarLayout;
 
 //Layout Behavior class to fix AppBarLayout + RecyclerView fling issue
 // Issue link: https://code.google.com/p/android/issues/detail?id=177729
@@ -36,8 +36,8 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
     }
 
     @Override
-    public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, AppBarLayout child, View target, int dx, int dy, int[] consumed) {
-        super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed);
+    public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, AppBarLayout child, View target, int dx, int dy, int[] consumed, int type) {
+        super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed, type);
         isPositive = dy > 0;
     }
 }

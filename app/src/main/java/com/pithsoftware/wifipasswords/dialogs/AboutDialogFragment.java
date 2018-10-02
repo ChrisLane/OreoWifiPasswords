@@ -6,26 +6,25 @@ import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
-
+import butterknife.BindView;
+import butterknife.BindViews;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.pithsoftware.wifipasswords.R;
 import com.pithsoftware.wifipasswords.activities.IntroActivity;
 import com.pithsoftware.wifipasswords.extras.MyApplication;
 
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 
 public class AboutDialogFragment extends DialogFragment {
 
-    @Bind ({R.id.dialog_about_info,
+    @BindViews({R.id.dialog_about_info,
             R.id.dialog_about_github,
             R.id.dialog_about_library_butterknife,
             R.id.dialog_about_library_retrolambda,
@@ -35,7 +34,7 @@ public class AboutDialogFragment extends DialogFragment {
             R.id.dialog_about_help_readme})
     List<TextView> textViewsLinks;
 
-    @Bind(R.id.dialog_about_version) TextView mVersion;
+    @BindView(R.id.dialog_about_version) TextView mVersion;
 
     @OnClick(R.id.dialog_about_help_intro)
     void intro(View v) { startActivity(new Intent(v.getContext(), IntroActivity.class)); }

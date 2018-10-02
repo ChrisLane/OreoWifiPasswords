@@ -5,9 +5,9 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.preference.PreferenceManager;
-import android.support.v4.content.res.ResourcesCompat;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v7.widget.RecyclerView;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.core.view.MotionEventCompat;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -18,7 +18,8 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import com.pithsoftware.wifipasswords.R;
 import com.pithsoftware.wifipasswords.extras.MyApplication;
 import com.pithsoftware.wifipasswords.pojo.WifiEntry;
@@ -26,9 +27,6 @@ import com.pithsoftware.wifipasswords.pojo.WifiEntry;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 
 public class WifiListAdapter extends RecyclerView.Adapter<WifiListAdapter.MyViewHolder>
@@ -334,17 +332,17 @@ public class WifiListAdapter extends RecyclerView.Adapter<WifiListAdapter.MyView
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.title_wifi)
+        @BindView(R.id.title_wifi)
         TextView mTitle;
-        @Bind(R.id.current_wifi)
+        @BindView(R.id.current_wifi)
         CheckBox mCurrentInd;
-        @Bind(R.id.password_wifi)
+        @BindView(R.id.password_wifi)
         TextView mPassword;
-        @Bind(R.id.drag_handler)
+        @BindView(R.id.drag_handler)
         ImageView mDragHandler;
-        @Bind(R.id.wifi_entry_layout)
+        @BindView(R.id.wifi_entry_layout)
         LinearLayout mBackground;
-        @Bind(R.id.tag_wifi_text)
+        @BindView(R.id.tag_wifi_text)
         TextView mTagText;
 
         MyViewHolder(View itemView) {

@@ -1,41 +1,31 @@
 package com.pithsoftware.wifipasswords.fragments;
 
 import android.app.Activity;
-import android.app.Application;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.ActionMode;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionMode;
+import androidx.appcompat.widget.SearchView;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.MenuItemCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.pithsoftware.wifipasswords.R;
 import com.pithsoftware.wifipasswords.activities.IntroActivity;
 import com.pithsoftware.wifipasswords.activities.MainActivity;
@@ -49,18 +39,11 @@ import com.pithsoftware.wifipasswords.extras.AutoUpdateList;
 import com.pithsoftware.wifipasswords.extras.MyApplication;
 import com.pithsoftware.wifipasswords.extras.RequestCodes;
 import com.pithsoftware.wifipasswords.pojo.WifiEntry;
-import com.pithsoftware.wifipasswords.recycler.ItemDragListener;
-import com.pithsoftware.wifipasswords.recycler.MyTouchHelperCallback;
-import com.pithsoftware.wifipasswords.recycler.RecyclerTouchListener;
-import com.pithsoftware.wifipasswords.recycler.WifiListAdapter;
-import com.pithsoftware.wifipasswords.recycler.WifiListLoadedListener;
+import com.pithsoftware.wifipasswords.recycler.*;
 import com.pithsoftware.wifipasswords.task.TaskLoadWifiEntries;
+import me.zhanghai.android.materialprogressbar.IndeterminateHorizontalProgressDrawable;
 
 import java.util.ArrayList;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import me.zhanghai.android.materialprogressbar.IndeterminateProgressDrawable;
 
 
 public class WifiListFragment extends Fragment implements WifiListLoadedListener,
@@ -81,9 +64,9 @@ public class WifiListFragment extends Fragment implements WifiListLoadedListener
     boolean mSortModeEnabled = false;
 
     //Layout
-    @Bind(R.id.fragment_main_container)
+    @BindView(R.id.fragment_main_container)
     FrameLayout mRoot;
-    @Bind(R.id.progress_bar)
+    @BindView(R.id.progress_bar)
     ProgressBar mProgressBar;
     FloatingActionButton mFAB;
 
@@ -93,7 +76,7 @@ public class WifiListFragment extends Fragment implements WifiListLoadedListener
     boolean mCurrentlyLoading = false;
 
     //RecyclerView
-    @Bind(R.id.main_wifi_list_recycler)
+    @BindView(R.id.main_wifi_list_recycler)
     RecyclerView mRecyclerView;
     WifiListAdapter mAdapter;
     RecyclerView.OnItemTouchListener mRecyclerTouchListener;
@@ -110,9 +93,6 @@ public class WifiListFragment extends Fragment implements WifiListLoadedListener
     ArrayList<Integer> mActionModeSelections;
     ActionMode.Callback mActionModeCallback;
 
-    public Context AppContext;
-
-
     public static WifiListFragment newInstance() {
         return new WifiListFragment();
     }
@@ -120,7 +100,6 @@ public class WifiListFragment extends Fragment implements WifiListLoadedListener
 
     public WifiListFragment() {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -131,7 +110,7 @@ public class WifiListFragment extends Fragment implements WifiListLoadedListener
         mListWifi = new ArrayList<>();
 
         ButterKnife.bind(this, layout);
-        mFAB = ButterKnife.findById(getActivity(), R.id.fab);
+        mFAB = getActivity().findViewById(R.id.fab);
 
         setupProgressBar();
 
@@ -571,7 +550,7 @@ public class WifiListFragment extends Fragment implements WifiListLoadedListener
     private void setupProgressBar() {
 
         //backward compatible MaterialProgressBar - https://github.com/DreaminginCodeZH/MaterialProgressBar
-        IndeterminateProgressDrawable progressDrawable = new IndeterminateProgressDrawable(getActivity());
+        IndeterminateHorizontalProgressDrawable progressDrawable = new IndeterminateHorizontalProgressDrawable(getActivity());
         mProgressBar.setIndeterminateDrawable(progressDrawable);
 
     }
@@ -755,7 +734,7 @@ public class WifiListFragment extends Fragment implements WifiListLoadedListener
     //Setup SearchView
     private void setupSearch(final Menu menu, MenuItem searchItem) {
 
-        MenuItemCompat.setOnActionExpandListener(searchItem, new MenuItemCompat.OnActionExpandListener() {
+        searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             //on Search - Collapse Toolbar & disable expanding, hide title;
             @Override
             public boolean onMenuItemActionExpand(MenuItem item) {
@@ -782,7 +761,7 @@ public class WifiListFragment extends Fragment implements WifiListLoadedListener
             }
         });
 
-        mSearchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        mSearchView = (SearchView) searchItem.getActionView();
         mSearchView.setOnQueryTextListener(this);
     }
 

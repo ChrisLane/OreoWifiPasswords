@@ -3,8 +3,7 @@ package com.pithsoftware.wifipasswords.extras;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.v4.app.FragmentManager;
-
+import androidx.fragment.app.FragmentManager;
 import com.pithsoftware.wifipasswords.R;
 import com.pithsoftware.wifipasswords.activities.MainActivity;
 import com.pithsoftware.wifipasswords.fragments.WifiListFragment;

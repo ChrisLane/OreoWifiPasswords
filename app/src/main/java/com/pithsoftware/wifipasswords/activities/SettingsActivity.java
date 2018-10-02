@@ -2,18 +2,12 @@ package com.pithsoftware.wifipasswords.activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
-import android.preference.EditTextPreference;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
+import android.preference.*;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
 import com.pithsoftware.wifipasswords.R;
 import com.pithsoftware.wifipasswords.dialogs.AboutDialogFragment;
 import com.pithsoftware.wifipasswords.extras.AppCompatPreferenceActivity;

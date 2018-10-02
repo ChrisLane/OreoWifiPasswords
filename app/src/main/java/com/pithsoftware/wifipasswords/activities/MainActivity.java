@@ -5,15 +5,14 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.appcompat.app.AlertDialog;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import com.pithsoftware.wifipasswords.R;
 import com.pithsoftware.wifipasswords.dialogs.AboutDialogFragment;
 import com.pithsoftware.wifipasswords.extras.MyApplication;
@@ -55,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             mWifiListFragment = (WifiListFragment) getSupportFragmentManager().findFragmentByTag(WIFI_LIST_FRAGMENT_TAG);
         }
-        mWifiListFragment.AppContext = getApplicationContext();
 
         getSupportFragmentManager().beginTransaction().replace
                 (R.id.content_frame, mWifiListFragment, WIFI_LIST_FRAGMENT_TAG).commit();

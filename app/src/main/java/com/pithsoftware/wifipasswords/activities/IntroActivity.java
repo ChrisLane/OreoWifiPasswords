@@ -3,13 +3,12 @@ package com.pithsoftware.wifipasswords.activities;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-
-import com.github.paolorotolo.appintro.AppIntro2;
+import androidx.core.content.ContextCompat;
+import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.pithsoftware.wifipasswords.R;
 
-public class IntroActivity extends AppIntro2 {
+public class IntroActivity extends AppIntro {
 
 
     @Override

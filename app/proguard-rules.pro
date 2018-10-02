@@ -15,7 +15,7 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
--keep class android.support.v7.widget.SearchView { *; }
+-keep class androidx.appcompat.widget.SearchView { *; }
 -dontwarn java.lang.invoke.*
 -keep class butterknife.** { *; }
 -dontwarn butterknife.internal.**

@@ -1,29 +1,23 @@
 package com.pithsoftware.wifipasswords.dialogs;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.DialogFragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.*;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 import com.pithsoftware.wifipasswords.R;
 import com.pithsoftware.wifipasswords.database.PasswordDB;
 import com.pithsoftware.wifipasswords.extras.MyApplication;
 import com.pithsoftware.wifipasswords.pojo.WifiEntry;
 
 import java.util.ArrayList;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 
 public class InputDialogFragment extends DialogFragment {
@@ -35,15 +29,15 @@ public class InputDialogFragment extends DialogFragment {
     public static final int INPUT_ENTRY = 0;
     public static final int INPUT_TAG = 1;
 
-    @Bind(R.id.input_title)
+    @BindView(R.id.input_title)
     EditText mTitle;
-    @Bind(R.id.input_password)
+    @BindView(R.id.input_password)
     EditText mPassword;
-    @Bind(R.id.input_confirm)
+    @BindView(R.id.input_confirm)
     Button mConfirm;
-    @Bind(R.id.input_cancel)
+    @BindView(R.id.input_cancel)
     Button mCancel;
-    @Bind(R.id.dialog_add_container)
+    @BindView(R.id.dialog_add_container)
     LinearLayout mRoot;
 
 
